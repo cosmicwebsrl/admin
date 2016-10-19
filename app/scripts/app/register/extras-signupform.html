@@ -1,0 +1,134 @@
+<div class="verticalcenter register-form">
+    <a href="#/"><img src="assets/img/logo-big-black.png" alt="Logo" class="brand" /></a>
+    <div class="panel panel-primary register-form">
+        <form class="form-horizontal" name="form" style="margin-bottom: 0px !important;" novalidate ng-submit="registerMe(user)">
+            <div class="panel-body">
+                <h2 class="text-center" style="margin-bottom: 25px;">Creaza cont nou</h2>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" id="first_name" placeholder="Nume" ng-model="user.first_name" required="" name="fName">
+                        </div>
+                        <div ng-if="form.$submitted || form.fName.$touched" ng-messages="form.fName.$error">
+                            <span ng-message="required" class="text-block text-danger">Introduceti numele</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" id="last_name" placeholder="Prenume" ng-model="user.last_name" required="" name="lName">
+                        </div>
+                        <div ng-if="form.$submitted || form.lName.$touched" ng-messages="form.lName.$error">
+                            <span ng-message="required" class="text-block text-danger">Introduceti prenumele</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            <input type="email"
+                                   class="form-control"
+                                   id="email"
+                                   placeholder="Email"
+                                   ng-model="user.email"
+                                   ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+                                   required=""
+                                   name="email">
+                        </div>
+                        <div ng-if="form.$submitted || form.email.$touched" ng-messages="form.email.$error">
+                            <span ng-message="pattern" class="text-block text-danger">Adresa de email nu este corecta!</span>
+                            <span ng-message="required" class="text-block text-danger">Introduceti adresa de email</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            <input type="text"
+                                   class="form-control"
+                                   id="phone"
+                                   placeholder="Telefon"
+                                   ng-model="user.phone"
+                                   ng-pattern="/^(?:(?:(?:00\s?|\+)40\s?|0)(?:7\d{2}\s?\d{3}\s?\d{3}|(21|31)\d{1}\s?\d{3}\s?\d{3}|((2|3)[3-7]\d{1})\s?\d{3}\s?\d{3}|(8|9)0\d{1}\s?\d{3}\s?\d{3}))$/"
+                                   required=""
+                                   name="phone">
+                        </div>
+                        <div ng-if="form.$submitted || form.phone.$touched" ng-messages="form.phone.$error">
+                            <span ng-message="required" class="text-block text-danger">Introduceti numarul de telefon</span>
+                            <span ng-message="pattern" class="text-block text-danger">Numarul de telefon nu este valid</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input type="password"
+                                   class="form-control"
+                                   id="password"
+                                   placeholder="Parola"
+                                   ng-model="user.password"
+                                   required=""
+                                   ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/"
+                                   ng-minlength="6"
+                                   ng-maxlength="20" 
+                                   name="pass">
+                        </div>                        
+                        <div ng-if="form.$submitted || form.pass.$touched" ng-messages="form.pass.$error">
+                            <span ng-message="required" class="text-block text-danger">Introduceti parola</span>
+                            <span ng-message="minlength" class="text-block text-danger">Parola este prea scurta (minim 5 caractere)</span>
+                            <span ng-message="maxlength" class="text-block text-danger">Parola este prea lunga (maxim 20 de caractere)</span>
+                            <span ng-message="pattern" class="text-block text-danger">Parola trebuie sa contina cel putin o litera mica , cel putin o litera mare si cel putin un numar</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input type="password"
+                                   password-verify="user.password"
+                                   class="form-control"
+                                   id="re_password"
+                                   placeholder="Rescrie parola"
+                                   ng-model="user.re_password"
+                                   required=""
+                                   name="re_pass">
+                        </div>
+                        <div ng-if="form.$submitted || form.re_pass.$touched" ng-messages="form.re_pass.$error">
+                            <span ng-message="required" class="text-block text-danger">Introduceti parola</span>
+                            <span ng-message="passwordVerify" class="text-block text-danger">Parolele nu se potrivesc</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkbox block" style="text-align:center">
+                    <input 
+                           icheck 
+                           type="checkbox" 
+                           name="agree"
+                           required=""
+                           ng-model="agree"
+                           >
+                    <span>
+                        Sunt de acord cu <a href="#">Termenii si Conditiile</a> site-ului.
+                    </span>
+                    <div ng-if="form.$submitted || form.agree.$touched" ng-messages="form.agree.$error">
+                        <span ng-message="required" class="text-block text-danger">Bifati casuta daca sunteti de acord</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel-footer">
+                <div class="pull-left">
+                    <input type="button" ng-click="reset(form)" class="btn btn-default" value="Reset" />
+                </div>
+                <div class="pull-right">
+                    <input type="submit" class="btn btn-success" value="Creaza cont" ng-disabled="form.$invalid" />
+                </div>
+            </div>
+        </form>
+
+        <div class="panel-loading" ng-show="showRegisterLoader">
+            <div class="panel-loader-dots"></div>
+        </div>
+    </div>
+</div>

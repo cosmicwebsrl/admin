@@ -1,0 +1,46 @@
+<div class="verticalcenter">
+	<a href="#/"><img src="assets/img/logo-big-black.png" alt="Logo" class="brand" /></a>
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<h4 class="text-center" style="margin-bottom: 25px;">Intra in cont sau <a href="#/register">Creaza cont nou</a></h4>
+			<form class="form-horizontal" style="margin-bottom: 0px !important;">
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user"></i></span>
+							<input type="text" class="form-control" ng-model="email" placeholder="Username">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+							<input type="password"  class="form-control" ng-model="password" placeholder="Password">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="text-center">
+						<p class="block">Sau</p>
+                        <button class="btn btn-social btn-label btn-facebook" style="margin-bottom: 10px;" ng-click="link('facebook')"><i class="fa fa-facebook"></i> Conecteaza-te cu Facebook</button>
+						<button class="btn btn-social btn-label btn-google" ng-click="link('google')"><i class="fa fa-google"></i> Conecteaza-te cu Google</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="panel-footer">
+			<a href="#/" class="pull-left btn btn-link" style="padding-left:0">Forgot password?</a>
+			
+			<div class="pull-right">
+				<a href="" ng-submit="reset()" class="btn btn-default">Reset</a>
+				<a href="" ng-click="doLogin()" class="btn btn-primary">Log In</a>
+			</div>
+		</div>
+
+        <div class="panel-loading" ng-show="showLoginLoader">
+            <div class="panel-loader-dots"></div>
+        </div>
+	</div>
+</div>
