@@ -81,11 +81,11 @@ angular
                 }
             })
             //for testing
-            .when('/:templateFile', {
-               templateUrl: function (param) {
-                   return 'views/' + param.templateFile + '.html';
-               }
-            })
+            // .when('/:templateFile', {
+            //    templateUrl: function (param) {
+            //        return 'views/' + param.templateFile + '.html';
+            //    }
+            // })
             .when('#', {
                 templateUrl: 'views/index.html',
                 resolve: {
