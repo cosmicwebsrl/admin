@@ -17,7 +17,7 @@ angular
     }, {
       label: 'Listare unitati',
       iconClasses: 'glyphicon glyphicon-th-list',
-      url: '#/units'
+      url: '#/dashboard/units'
     }];
     
     var removed = [{

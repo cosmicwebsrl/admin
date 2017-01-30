@@ -1,1 +1,106 @@
-unit list
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li><a href="#/">Dashboard</a></li>
+        <li>Unitati</li>
+        <li class="active">Adaugare</li>
+    </ol>
+
+    <h1>Adaugare unitate</h1>
+    <div class="options">
+        <div class="btn-toolbar">
+            <div class="btn-group" dropdown>
+                <a href="#" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-chevron-left"></i> Inapoi la unitati</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <panel panel-class="panel-sky" heading="Advanced Wizard">
+
+                    <form action="#" data-wizard="{finishButton: true, titleClick: true, block: true, validate: true}" class="form-horizontal">
+                        <fieldset title="Pasul 1">
+                            <legend>Informatii generale</legend>
+                            <div class="form-group">
+                                <label for="type_id" class="col-md-3 control-label">Tip unitate</label>
+                                <div class="col-md-6">
+                                    <select id="type_id" class="form-control" ng-options="type.type_id as type.singular for type in unitCtrl.form.data.types" ng-model="unitCtrl.form.input.type"
+                                        required>
+                                    <option value="">Selectati tipul unitatii</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="unit_name" class="col-md-3 control-label">Denumire unitate</label>
+                                <div class="col-md-6"><input id="unit_name" class="form-control" type="text" ng-model="unitCtrl.form.input.name"
+                                        required></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="region" class="col-md-3 control-label">Judet</label>
+                                <div class="col-md-6">
+                                    <select id="region" class="form-control" ng-options="reg.region as reg.region for reg in unitCtrl.form.data.regions"
+                                        ng-model="unitCtrl.form.input.region" ng-change="unitCtrl.onRegionSelect()">
+                                    <option value="">Selectati judetul</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="fieldurl" class="col-md-3 control-label">Localiate</label>
+                                <div class="col-md-6">
+                                    <select class="form-control" ng-options="cty.city_id as cty.city for cty in unitCtrl.form.data.cities"
+                                        ng-model="unitCtrl.form.input.city">
+                                    <option value="">Selectati localitatea</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="fieldurl" class="col-md-3 control-label">Localizare pe harta</label>
+                                <div class="col-md-6">
+
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset title="Pasul 2">
+                            <legend>Facilitati unitate</legend>
+                            <div class="form-group">
+                                <label for="fieldnick" class="col-md-3 control-label">Nick</label>
+                                <div class="col-md-6"><input id="fieldnick" class="form-control" name="name" minlength="4" type="text" required></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="fieldabout" class="col-md-3 control-label">About</label>
+                                <div class="col-md-6"><textarea id="fieldabout" class="form-control autosize" rows="2"></textarea></div>
+                            </div>
+                        </fieldset>
+                        <fieldset title="Pasul 3">
+                            <legend>Camere si tarife</legend>
+                            <div class="form-group">
+                                <label for="" class="col-md-3 control-label">Terms and Conditions</label>
+                                <div class="col-md-9">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, nemo, atque consequuntur
+                                        officiis asperiores consectetur porro labore commodi esse error quisquam nihil illum
+                                        sunt facere inventore possimus autem ab voluptates quibusdam non voluptatum suscipit
+                                        architecto. Illo, facilis, corporis, veritatis dolores minus quasi iure cupiditate
+                                        quis autem ducimus nisi obcaecati tenetur sed ea excepturi pariatur consequatur enim
+                                        labore officia mollitia. Rerum, voluptatem numquam molestiae recusandae iusto ipsum
+                                        inventore unde accusantium labore delectus? Doloremque, fugit, sunt libero laboriosam
+                                        cupiditate sed sequi nostrum saepe. Mollitia, alias, expedita accusantium porro error
+                                        autem dolore veniam commodi nesciunt provident vitae neque. Nostrum, sed, molestias
+                                        itaque provident inventore natus animi quasi laborum laboriosam facere ratione aperiam
+                                        iusto. Non ducimus facere sunt doloribus? Asperiores, natus distinctio quis iure!</p>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <input type="submit" class="finish btn-success btn" value="Submit" />
+                    </form>
+                </panel>
+                <pre>
+{{unitCtrl.form | json}}
+                </pre>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- container-fluid -->

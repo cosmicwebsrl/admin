@@ -1,1 +1,38 @@
-unit form
+<div id="page-heading">
+    <ol class="breadcrumb">
+        <li><a href="#/">Dashboard</a></li>
+        <li class="active">Unitati</li>
+    </ol>
+
+    <h1>Unitati</h1>
+    <div class="options">
+        <div class="btn-toolbar">
+            <a href="#/dashboard/units/create" class="btn btn-default hidden-xs" title="Unitate noua"
+            ><i class="glyphicon  glyphicon-home"></i> Adauga unitate</a>
+            <button class="btn" title="Afisare Nepublicate"
+                ng-click="unitCtrl.toggleDisplay()"
+                ng-class="unitCtrl.display === 'published' ? 'btn-default' : 'btn-primary' "
+            ><i class="glyphicon  glyphicon-eye-close"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+      
+            <panel panel-class="panel-primary" data-heading="Listare unitati">
+
+                <div class="input-icon right mb10">
+                    <i class="fa fa-search"></i>
+                    <input type="text" ng-model="filterOptions.filterText" class="form-control" placeholder="Filtrare">
+                </div>
+
+                <div style="height: 500px;" ng-grid="tableOptions"></div>
+
+            </panel>
+
+        </div>
+    </div>
+
+</div> <!-- container-fluid -->
