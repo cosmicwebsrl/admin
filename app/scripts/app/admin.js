@@ -1,5 +1,6 @@
 angular
     .module('admin', [
         'admin.login',
-        'admin.register'
+        'admin.register',
+        'admin.unit'
     ]);

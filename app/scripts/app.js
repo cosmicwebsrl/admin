@@ -103,6 +103,11 @@ angular
                   templateUrl: 'scripts/app/register/extras-signupform.html',
                   controller: 'RegisterController'
               })
+              .when('/units',{
+                  templateUrl: 'scripts/app/unit/list/unit-list.html',
+                  controller: 'UnitListController',
+                  controllerAs: 'unitCtrl'
+              })
             .otherwise({
                 redirectTo: '/'
             });

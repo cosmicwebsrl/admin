@@ -10,6 +10,24 @@ angular
       label: 'Dashboard',
       iconClasses: 'glyphicon glyphicon-home',
       url: '#/'
+    },{
+      label: 'Administrare Unitati',
+      iconClasses: '',
+      separator: true
+    }, {
+      label: 'Listare unitati',
+      iconClasses: 'glyphicon glyphicon-th-list',
+      url: '#/units'
+    }];
+    
+    var removed = [{
+      label: 'Overview',
+      iconClasses: '',
+      separator: true
+    }, {
+      label: 'Dashboard',
+      iconClasses: 'glyphicon glyphicon-home',
+      url: '#/'
     }, {
       label: 'Layouts',
       iconClasses: 'glyphicon glyphicon-th-list',
