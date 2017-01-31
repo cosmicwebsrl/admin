@@ -24,57 +24,251 @@
                         <fieldset title="Pasul 1">
                             <legend>Informatii generale</legend>
                             <div class="form-group">
-                                <label for="type_id" class="col-md-3 control-label">Tip unitate</label>
+                                <label for="type_id" class="col-md-3 control-label">Tip unitate:</label>
                                 <div class="col-md-6">
-                                    <select id="type_id" class="form-control" ng-options="type.type_id as type.singular for type in unitCtrl.form.data.types" ng-model="unitCtrl.form.input.type"
+                                    <select id="type_id" class="form-control" ng-options="type.singular for type in unitCtrl.form.data.types" ng-model="unitCtrl.form.input.type"
                                         required>
                                     <option value="">Selectati tipul unitatii</option>
                                 </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="unit_name" class="col-md-3 control-label">Denumire unitate</label>
-                                <div class="col-md-6"><input id="unit_name" class="form-control" type="text" ng-model="unitCtrl.form.input.name"
-                                        required></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="region" class="col-md-3 control-label">Judet</label>
+                                <label for="unit_name" class="col-md-3 control-label">Denumire unitate:</label>
                                 <div class="col-md-6">
-                                    <select id="region" class="form-control" ng-options="reg.region as reg.region for reg in unitCtrl.form.data.regions"
-                                        ng-model="unitCtrl.form.input.region" ng-change="unitCtrl.onRegionSelect()">
+                                    <input id="unit_name" class="form-control" type="text" ng-model="unitCtrl.form.input.name" required>
+                                </div>
+                            </div>
+
+                            <legend>Localizare</legend>                            
+                            <div class="form-group">
+                                <label for="region" class="col-md-3 control-label">Judet:</label>
+                                <div class="col-md-6">
+                                    <select id="region" class="form-control" ng-options="reg.region for reg in unitCtrl.form.data.regions" ng-model="unitCtrl.form.input.region"
+                                        ng-change="unitCtrl.onRegionSelect()" requried>
                                     <option value="">Selectati judetul</option>
                                 </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="fieldurl" class="col-md-3 control-label">Localiate</label>
+                                <label for="city" class="col-md-3 control-label">Localiate:</label>
                                 <div class="col-md-6">
-                                    <select class="form-control" ng-options="cty.city_id as cty.city for cty in unitCtrl.form.data.cities"
-                                        ng-model="unitCtrl.form.input.city">
-                                    <option value="">Selectati localitatea</option>
-                                </select>
+                                    <select id="city" class="form-control" ng-disabled="!unitCtrl.form.input.region" ng-options="cty.city + ' ('+cty.parent_city+')' for cty in unitCtrl.form.data.cities"
+                                        ng-model="unitCtrl.form.input.city" ng-change="unitCtrl.onCitySelect()" required>  
+                                        <option value="" ng-if="unitCtrl.form.input.region">Selectati localitatea</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="fieldurl" class="col-md-3 control-label">Localizare pe harta</label>
+                                <label for="gps" class="col-md-3 control-label">GPS:</label>
                                 <div class="col-md-6">
+                                    <input id="gps" class="form-control" type="text" ng-model="unitCtrl.form.input.gps" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="fieldurl" class="col-md-3 control-label">Localizare pe harta:</label>
+                                <div class="col-md-6">
+                                    <div class="map-height" gmap options="unitCtrl.mapOptions" instance="unitCtrl.geoCodingMapInstance"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="street" class="col-md-3 control-label">Strada:</label>
+                                <div class="col-md-3">
+                                    <input id="street" class="form-control" type="text" ng-model="unitCtrl.form.input.street">
+                                </div>
+                                <label for="street_no" class="col-md-1 control-label">Numar:</label>
+                                <div class="col-md-2">
+                                    <input id="street_no" class="form-control" type="text" ng-model="unitCtrl.form.input.streetNo">
+                                </div>
+                            </div>
+
+
+                            <legend>Detalii</legend>                              
+                            <div class="form-group">
+                                <label for="stars" class="col-md-3 control-label">Grad de confort:</label>
+                                <div class="col-md-6">
+                                    <input id="stars" class="form-control" type="text" ng-model="unitCtrl.form.input.stars" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="no_people" class="col-md-3 control-label">Nr. Locuri:</label>
+                                <div class="col-md-3">
+                                    <input id="no_people" class="form-control" type="text" ng-model="unitCtrl.form.input.capacity" required>
+                                </div>
+                                <label for="no_rooms" class="col-md-1 control-label">Nr. Camere:</label>
+                                <div class="col-md-2">
+                                    <input id="no_rooms" class="form-control" type="text" ng-model="unitCtrl.form.input.rooms" required>
+                                </div>
+                            </div>
+                            
+                            <legend>Receptie</legend>
+                            <div class="form-group">
+                                <label for="phone_reception" class="col-md-3 control-label">Telefon receptie:</label>
+                                <div class="col-md-6">
+                                    <input id="phone_reception" class="form-control" type="text" ng-model="unitCtrl.form.input.receptionPhone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="fax_reception" class="col-md-3 control-label">Fax receptie:</label>
+                                <div class="col-md-6">
+                                    <input id="fax_reception" class="form-control" type="text" ng-model="unitCtrl.form.input.receptionFax">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="name_reception" class="col-md-3 control-label">Nume receptionist:</label>
+                                <div class="col-md-6">
+                                    <input id="name_reception" class="form-control" type="text" ng-model="unitCtrl.form.input.receptionName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email_reception" class="col-md-3 control-label">Mail receptie:</label>
+                                <div class="col-md-6">
+                                    <input id="email_reception" class="form-control" type="text" ng-model="unitCtrl.form.input.receptionEmail">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="website" class="col-md-3 control-label">Adresa web:</label>
+                                <div class="col-md-6">
+                                    <input id="website" class="form-control" type="text" ng-model="unitCtrl.form.input.website">
+                                </div>
+                            </div>
+
+                            <legend>Descriere</legend>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label"><u>Scurta</u> descriere:</label>
+                                <div class="col-md-6">
+                                    <tabset tab-theme="magenta" tab-position="top">
+                                        <tab heading="Romana">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <textarea id="shortDescriptionRO" class="form-control" type="text" ng-model="unitCtrl.form.input.shortDescriptionRO" required></textarea>
+                                                </div>
+                                            </div>
+                                        </tab>
+                                        <tab heading="Engleza">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <textarea id="shortDescriptionEN" class="form-control" type="text" ng-model="unitCtrl.form.input.shortDescriptionEN"></textarea>
+                                                </div>
+                                            </div>
+                                        </tab>
+                                        <tab heading="Franceza">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <textarea id="shortDescriptionFR" class="form-control" type="text" ng-model="unitCtrl.form.input.shortDescriptionFR"></textarea>
+                                                </div>
+                                            </div>
+                                        </tab>
+                                    </tabset>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Descriere:</label>
+                                <div class="col-md-6">
+                                    <tabset tab-theme="orange" tab-position="top">
+                                        <tab heading="Romana">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <textarea rows="10" id="descriptionRO" class="form-control" type="text" ng-model="unitCtrl.form.input.descriptionRO" required></textarea>
+                                                </div>
+                                            </div>
+                                        </tab>
+                                        <tab heading="Engleza">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <textarea rows="10" id="descriptionEN" class="form-control" type="text" ng-model="unitCtrl.form.input.descriptionEN"></textarea>
+                                                </div>
+                                            </div>
+                                        </tab>
+                                        <tab heading="Franceza">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <textarea rows="10" id="descriptionFR" class="form-control" type="text" ng-model="unitCtrl.form.input.descriptionFR"></textarea>
+                                                </div>
+                                            </div>
+                                        </tab>
+                                    </tabset>
+                                </div>
+                            </div>
+
+                            <legend>Contact</legend>
+
+                            <div class="form-group">
+                                <label for="contactPerson" class="col-md-3 control-label">Persona contact:</label>
+                                <div class="col-md-6">
+                                    <input id="contactPerson" class="form-control" type="text" ng-model="unitCtrl.form.input.contactPerson">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactPersonFunction" class="col-md-3 control-label">Functie persona contact:</label>
+                                <div class="col-md-6">
+                                    <input id="contactPersonFunction" class="form-control" type="text" ng-model="unitCtrl.form.input.contactPersonFunction">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactPersonPhone" class="col-md-3 control-label">Telefon persona contact:</label>
+                                <div class="col-md-6">
+                                    <input id="contactPersonPhone" class="form-control" type="text" ng-model="unitCtrl.form.input.contactPersonPhone">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactPersonMail" class="col-md-3 control-label">Mail persona contact:</label>
+                                <div class="col-md-6">
+                                    <input id="contactPersonMail" class="form-control" type="text" ng-model="unitCtrl.form.input.contactPersonMail">
+                                </div>
+                            </div>
+
+                            <legend>Companie</legend>
+                            <div class="form-group">
+                                <label for="companyName" class="col-md-3 control-label">Nume Firma:</label>
+                                <div class="col-md-6">
+                                    <input id="companyName" class="form-control" type="text" ng-model="unitCtrl.form.input.companyName">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="companRegCode" class="col-md-3 control-label">Nr. Registrul Comertului:</label>
+                                <div class="col-md-6">
+                                    <input id="companRegCode" class="form-control" type="text" ng-model="unitCtrl.form.input.companRegCode">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cui" class="col-md-3 control-label">CUI:</label>
+                                <div class="col-md-6">
+                                    <input id="cui" class="form-control" type="text" ng-model="unitCtrl.form.input.cui">
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset title="Pasul 2">
+                            <legend>Facilitati unitate</legend>
+                            <div class="form-group">
+                                <div class="col-md-offset-3 col-sm-7">
+                                    <label class="col-md-4" ng-repeat="facility in unitCtrl.form.data.facilities"> 
+                                        <input icheck type="checkbox" /> <span class="capitalize"> {{facility.facility_name_ro}}</span>
+                                    </label>
+
+                                </div>
+                            </div>
+
+                             <legend>Servicii unitate</legend>
+                            <div class="form-group">
+                                <div class="col-md-offset-3 col-sm-7">
+                                    <label class="col-md-4" ng-repeat="service in unitCtrl.form.data.services"> 
+                                        <input icheck type="checkbox" /> <span class="capitalize"> {{service.service_name_ro}}</span>
+                                    </label>
 
                                 </div>
                             </div>
                         </fieldset>
-                        <fieldset title="Pasul 2">
-                            <legend>Facilitati unitate</legend>
-                            <div class="form-group">
-                                <label for="fieldnick" class="col-md-3 control-label">Nick</label>
-                                <div class="col-md-6"><input id="fieldnick" class="form-control" name="name" minlength="4" type="text" required></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="fieldabout" class="col-md-3 control-label">About</label>
-                                <div class="col-md-6"><textarea id="fieldabout" class="form-control autosize" rows="2"></textarea></div>
-                            </div>
-                        </fieldset>
                         <fieldset title="Pasul 3">
-                            <legend>Camere si tarife</legend>
+                            <legend>Camere</legend>
                             <div class="form-group">
                                 <label for="" class="col-md-3 control-label">Terms and Conditions</label>
                                 <div class="col-md-9">
@@ -92,11 +286,50 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <input type="submit" class="finish btn-success btn" value="Submit" />
+                        <fieldset title="Pasul 4">
+                            <legend>Tarife</legend>
+                            <div class="form-group">
+                                <label for="" class="col-md-3 control-label">Terms and Conditions</label>
+                                <div class="col-md-9">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, nemo, atque consequuntur
+                                        officiis asperiores consectetur porro labore commodi esse error quisquam nihil illum
+                                        sunt facere inventore possimus autem ab voluptates quibusdam non voluptatum suscipit
+                                        architecto. Illo, facilis, corporis, veritatis dolores minus quasi iure cupiditate
+                                        quis autem ducimus nisi obcaecati tenetur sed ea excepturi pariatur consequatur enim
+                                        labore officia mollitia. Rerum, voluptatem numquam molestiae recusandae iusto ipsum
+                                        inventore unde accusantium labore delectus? Doloremque, fugit, sunt libero laboriosam
+                                        cupiditate sed sequi nostrum saepe. Mollitia, alias, expedita accusantium porro error
+                                        autem dolore veniam commodi nesciunt provident vitae neque. Nostrum, sed, molestias
+                                        itaque provident inventore natus animi quasi laborum laboriosam facere ratione aperiam
+                                        iusto. Non ducimus facere sunt doloribus? Asperiores, natus distinctio quis iure!</p>
+                                </div>
+                            </div>
+                        </fieldset>
+                        
+                        <fieldset title="Pasul 5">
+                            <legend>Imagini</legend>
+                            <div class="form-group">
+                                <label for="" class="col-md-3 control-label">Terms and Conditions</label>
+                                <div class="col-md-9">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, nemo, atque consequuntur
+                                        officiis asperiores consectetur porro labore commodi esse error quisquam nihil illum
+                                        sunt facere inventore possimus autem ab voluptates quibusdam non voluptatum suscipit
+                                        architecto. Illo, facilis, corporis, veritatis dolores minus quasi iure cupiditate
+                                        quis autem ducimus nisi obcaecati tenetur sed ea excepturi pariatur consequatur enim
+                                        labore officia mollitia. Rerum, voluptatem numquam molestiae recusandae iusto ipsum
+                                        inventore unde accusantium labore delectus? Doloremque, fugit, sunt libero laboriosam
+                                        cupiditate sed sequi nostrum saepe. Mollitia, alias, expedita accusantium porro error
+                                        autem dolore veniam commodi nesciunt provident vitae neque. Nostrum, sed, molestias
+                                        itaque provident inventore natus animi quasi laborum laboriosam facere ratione aperiam
+                                        iusto. Non ducimus facere sunt doloribus? Asperiores, natus distinctio quis iure!</p>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <input type="submit" class="finish btn-success btn" value="Salveaza" />
                     </form>
                 </panel>
                 <pre>
-{{unitCtrl.form | json}}
+                    {{ unitCtrl.form.input | json }}
                 </pre>
             </div>
         </div>
