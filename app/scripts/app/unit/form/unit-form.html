@@ -9,7 +9,7 @@
     <div class="options">
         <div class="btn-toolbar">
             <div class="btn-group" dropdown>
-                <a href="#" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-chevron-left"></i> Inapoi la unitati</a>
+                <a href="#/dashboard/units" class="btn btn-default hidden-xs"><i class="glyphicon glyphicon-chevron-left"></i> Inapoi la unitati</a>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
 
-                            <legend>Localizare</legend>                            
+                            <legend>Localizare</legend>
                             <div class="form-group">
                                 <label for="region" class="col-md-3 control-label">Judet:</label>
                                 <div class="col-md-6">
@@ -83,7 +83,7 @@
                             </div>
 
 
-                            <legend>Detalii</legend>                              
+                            <legend>Detalii</legend>
                             <div class="form-group">
                                 <label for="stars" class="col-md-3 control-label">Grad de confort:</label>
                                 <div class="col-md-6">
@@ -100,7 +100,7 @@
                                     <input id="no_rooms" class="form-control" type="text" ng-model="unitCtrl.form.input.rooms" required>
                                 </div>
                             </div>
-                            
+
                             <legend>Receptie</legend>
                             <div class="form-group">
                                 <label for="phone_reception" class="col-md-3 control-label">Telefon receptie:</label>
@@ -257,7 +257,7 @@
                                 </div>
                             </div>
 
-                             <legend>Servicii unitate</legend>
+                            <legend>Servicii unitate</legend>
                             <div class="form-group">
                                 <div class="col-md-offset-3 col-sm-7">
                                     <label class="col-md-4" ng-repeat="service in unitCtrl.form.data.services"> 
@@ -270,19 +270,23 @@
                         <fieldset title="Pasul 3">
                             <legend>Camere</legend>
                             <div class="form-group">
-                                <label for="" class="col-md-3 control-label">Terms and Conditions</label>
+                                <label for="" class="col-md-3 control-label">Camere</label>
                                 <div class="col-md-9">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, nemo, atque consequuntur
-                                        officiis asperiores consectetur porro labore commodi esse error quisquam nihil illum
-                                        sunt facere inventore possimus autem ab voluptates quibusdam non voluptatum suscipit
-                                        architecto. Illo, facilis, corporis, veritatis dolores minus quasi iure cupiditate
-                                        quis autem ducimus nisi obcaecati tenetur sed ea excepturi pariatur consequatur enim
-                                        labore officia mollitia. Rerum, voluptatem numquam molestiae recusandae iusto ipsum
-                                        inventore unde accusantium labore delectus? Doloremque, fugit, sunt libero laboriosam
-                                        cupiditate sed sequi nostrum saepe. Mollitia, alias, expedita accusantium porro error
-                                        autem dolore veniam commodi nesciunt provident vitae neque. Nostrum, sed, molestias
-                                        itaque provident inventore natus animi quasi laborum laboriosam facere ratione aperiam
-                                        iusto. Non ducimus facere sunt doloribus? Asperiores, natus distinctio quis iure!</p>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th ng-repeat="heading in data.headings">{{heading}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="row in data.rows">
+                                                <td>{{row[0]}}</td>
+                                                <td>{{row[1]}}</td>
+                                                <td>{{row[2]}}</td>
+                                                <td>{{row[3]}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </fieldset>
@@ -305,7 +309,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                        
+
                         <fieldset title="Pasul 5">
                             <legend>Imagini</legend>
                             <div class="form-group">

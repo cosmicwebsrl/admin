@@ -3,9 +3,9 @@
         .module('admin.unit')
         .controller('UnitListController', controller);
 
-    controller.$inject = ['$scope', 'UnitListService'];
+    controller.$inject = ['$scope', 'config', 'UnitListService'];
 
-    function controller($scope, unitListService) {
+    function controller($scope, config, unitListService) {
 
         /**
          * VM public
@@ -53,7 +53,7 @@
          */
         function getUnits() {
             unitListService
-                .get('unitListSimple', vm.display)
+                .get('unit',  'list/' + config.app.getMode() + '/' + vm.display)
                 .then(updateTable);
         }
 
@@ -61,7 +61,6 @@
          * @private
          */
         function updateTable(response) {
-            console.log(response.data);
             $scope.tableData = response.data;
             $scope.totalServerItems  = response.data.length;
         }

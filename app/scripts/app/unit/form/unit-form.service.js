@@ -41,7 +41,7 @@
             if (cacheEnabled('types')) {
                 _defer.resolve({ data: srv.data.types });
             } else {
-                get('unitTypes', config.app.getMode(config.app.lang))
+                get('unitTypes', 'list/' + config.app.getMode(config.app.lang))
                     .then(function (response) {
                         srv.data.types = response.data || [];
                         _defer.resolve(response.data)
@@ -59,12 +59,24 @@
             if (cacheEnabled('regions')) {
                 return _defer.resolve({ data: srv.data.types });
             } else {
-                get('regions')
+                get('map', 'regions')
                     .then(function (response) {
                         srv.data.regions = response.data || [];
                         _defer.resolve(response.data)
                     }, handleError);
             }
+
+            return _defer.promise;
+        }
+
+        function getCities(region) {
+            _defer = $q.defer();
+
+            get('map', 'cities/' + region)
+                .then(function (response) {
+                    srv.data.cities = response.data || [];
+                    _defer.resolve(response.data)
+                }, handleError);
 
             return _defer.promise;
         }
@@ -77,7 +89,7 @@
             if (cacheEnabled('facilities')) {
                 return _defer.resolve({ data: srv.data.facilities });
             } else {
-                get('facilities', config.app.getMode())
+                get('unitFacilities', 'list/' + config.app.getMode())
                     .then(function (response) {
                         srv.data.facilities = response.data || [];
                         _defer.resolve(response.data)
@@ -87,32 +99,20 @@
             return _defer.promise;
         }
 
-        function getServices(){
-            
+        function getServices() {
+
             _defer = $q.defer();
 
             // Use cache
             if (cacheEnabled('services')) {
                 return _defer.resolve({ data: srv.data.services });
             } else {
-                get('services', config.app.getMode())
+                get('unitServices', 'list/' + config.app.getMode())
                     .then(function (response) {
                         srv.data.services = response.data || [];
                         _defer.resolve(response.data)
                     }, handleError);
             }
-
-            return _defer.promise;
-        }
-
-        function getCities(region) {
-            _defer = $q.defer();
-
-            get('cities', region)
-                .then(function (response) {
-                    srv.data.cities = response.data || [];
-                    _defer.resolve(response.data)
-                }, handleError);
 
             return _defer.promise;
         }

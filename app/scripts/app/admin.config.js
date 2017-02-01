@@ -19,14 +19,11 @@
                 },
                 link: {
                     base: 'http://api.informareturist.ro',
-                    unitListSimple: 'unit/list/simple',
-                    unitListFull: 'unit/list/full',
-                    unitCount: 'unit/count',
-                    unitTypes: 'unit/types',
-                    facilities: 'unit/facilities',
-                    services: 'unit/services',
-                    regions: 'map/regions',
-                    cities: 'map/cities'
+                    unit: 'unit',
+                    unitTypes: 'unit-type',
+                    unitFacilities: 'unit-facility',
+                    unitServices: 'unit-service',
+                    map: 'map'
                 }
             }
         });
