@@ -35,7 +35,7 @@
                             <div class="form-group">
                                 <label for="unit_name" class="col-md-3 control-label">Denumire unitate:</label>
                                 <div class="col-md-6">
-                                    <input id="unit_name" class="form-control" type="text" ng-model="unitCtrl.form.input.name" required>
+                                    <input id="unit_name" class="form-control" type="text" ng-model="unitCtrl.form.input.name" required />
                                 </div>
                             </div>
 
@@ -248,96 +248,37 @@
 
                         <fieldset title="Pasul 2">
                             <legend>Facilitati unitate</legend>
-                            <div class="form-group">
-                                <div class="col-md-offset-3 col-sm-7">
-                                    <label class="col-md-4" ng-repeat="facility in unitCtrl.form.data.facilities"> 
-                                        <input icheck type="checkbox" /> <span class="capitalize"> {{facility.facility_name_ro}}</span>
-                                    </label>
-
-                                </div>
-                            </div>
-
+                            <ng-include ng-controller="UnitFacilitiesController as facilityCtrl" src="'./scripts/app/unit/unit-facilities/unit-facilities-form-checklist.html'"></ng-include>
                             <legend>Servicii unitate</legend>
-                            <div class="form-group">
-                                <div class="col-md-offset-3 col-sm-7">
-                                    <label class="col-md-4" ng-repeat="service in unitCtrl.form.data.services"> 
-                                        <input icheck type="checkbox" /> <span class="capitalize"> {{service.service_name_ro}}</span>
-                                    </label>
-
-                                </div>
-                            </div>
+                            <ng-include ng-controller="UnitServicesController as serviceCtrl" src="'./scripts/app/unit/unit-services/unit-services-form-checklist.html'"></ng-include>
                         </fieldset>
                         <fieldset title="Pasul 3">
-                            <legend>Camere</legend>
-                            <div class="form-group">
-                                <label for="" class="col-md-3 control-label">Camere</label>
-                                <div class="col-md-9">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th ng-repeat="heading in data.headings">{{heading}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat="row in data.rows">
-                                                <td>{{row[0]}}</td>
-                                                <td>{{row[1]}}</td>
-                                                <td>{{row[2]}}</td>
-                                                <td>{{row[3]}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset title="Pasul 4">
-                            <legend>Tarife</legend>
-                            <div class="form-group">
-                                <label for="" class="col-md-3 control-label">Terms and Conditions</label>
-                                <div class="col-md-9">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, nemo, atque consequuntur
-                                        officiis asperiores consectetur porro labore commodi esse error quisquam nihil illum
-                                        sunt facere inventore possimus autem ab voluptates quibusdam non voluptatum suscipit
-                                        architecto. Illo, facilis, corporis, veritatis dolores minus quasi iure cupiditate
-                                        quis autem ducimus nisi obcaecati tenetur sed ea excepturi pariatur consequatur enim
-                                        labore officia mollitia. Rerum, voluptatem numquam molestiae recusandae iusto ipsum
-                                        inventore unde accusantium labore delectus? Doloremque, fugit, sunt libero laboriosam
-                                        cupiditate sed sequi nostrum saepe. Mollitia, alias, expedita accusantium porro error
-                                        autem dolore veniam commodi nesciunt provident vitae neque. Nostrum, sed, molestias
-                                        itaque provident inventore natus animi quasi laborum laboriosam facere ratione aperiam
-                                        iusto. Non ducimus facere sunt doloribus? Asperiores, natus distinctio quis iure!</p>
-                                </div>
-                            </div>
-                        </fieldset>
 
-                        <fieldset title="Pasul 5">
-                            <legend>Imagini</legend>
-                            <div class="form-group">
-                                <label for="" class="col-md-3 control-label">Terms and Conditions</label>
-                                <div class="col-md-9">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, nemo, atque consequuntur
-                                        officiis asperiores consectetur porro labore commodi esse error quisquam nihil illum
-                                        sunt facere inventore possimus autem ab voluptates quibusdam non voluptatum suscipit
-                                        architecto. Illo, facilis, corporis, veritatis dolores minus quasi iure cupiditate
-                                        quis autem ducimus nisi obcaecati tenetur sed ea excepturi pariatur consequatur enim
-                                        labore officia mollitia. Rerum, voluptatem numquam molestiae recusandae iusto ipsum
-                                        inventore unde accusantium labore delectus? Doloremque, fugit, sunt libero laboriosam
-                                        cupiditate sed sequi nostrum saepe. Mollitia, alias, expedita accusantium porro error
-                                        autem dolore veniam commodi nesciunt provident vitae neque. Nostrum, sed, molestias
-                                        itaque provident inventore natus animi quasi laborum laboriosam facere ratione aperiam
-                                        iusto. Non ducimus facere sunt doloribus? Asperiores, natus distinctio quis iure!</p>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <input type="submit" class="finish btn-success btn" value="Salveaza" />
-                    </form>
-                </panel>
-                <pre>
-                    {{ unitCtrl.form.input | json }}
-                </pre>
-            </div>
-        </div>
+                            <legend style="display: none">Camere</legend>
 
+<ng-include ng-controller="UnitRoomController as roomCtrl" src="'./scripts/app/unit/unit-room/unit-room-form.html'"></ng-include>
+
+</fieldset>
+<fieldset title="Pasul 4">
+    <legend  style="display: none">Tarife</legend>
+    <ng-include ng-controller="UnitPlanController as planCtrl" src="'./scripts/app/unit/unit-plan/unit-plan-form.html'"></ng-include>
+</fieldset>
+
+<fieldset title="Pasul 5">
+    <legend>Imagini</legend>
+    <div class="form-group">
 
     </div>
-    <!-- container-fluid -->
+</fieldset>
+<input type="submit" class="finish btn-success btn" value="Salveaza" />
+</form>
+</panel>
+<pre>
+                    {{ unitCtrl.form.input | json }}
+                </pre>
+</div>
+</div>
+
+
+</div>
+<!-- container-fluid -->

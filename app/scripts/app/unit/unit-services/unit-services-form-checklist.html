@@ -1,0 +1,10 @@
+
+<div class="form-group">
+    <div class="col-md-offset-3 col-sm-7">
+        <label class="col-md-4" ng-repeat="service in serviceCtrl.form.data.services"> 
+            <input icheck type="checkbox" ng-checked="serviceCtrl.isChecked(service.id_service)" ng-model="serviceCtrl.form.model[$index]" ng-change="serviceCtrl.toggleCheck(service.id_service)"/> 
+            <span class="capitalize"> {{service.service_name_ro}}</span>
+        </label>
+    </div>
+</div>
+<pre> {{ serviceCtrl.printChecked() }} </pre>

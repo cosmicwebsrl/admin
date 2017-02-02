@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h3 class="modal-title">Plan: {{ planRoomCtrl.title('start') }} - {{ planRoomCtrl.title('end') }}, {{ planRoomCtrl.title('currency') }}. </h3>
+</div>
+<div class="modal-body">
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>In plan</th>
+                        <th>Nr. Camera</th>
+                        <th>Tip Camera</th>
+                        <th>Pret</th>
+                    </tr>
+                </thead>
+                <tbody class="table-striped">
+                        <tr ng-repeat="room in planRoomCtrl.getAvailableRooms()">
+                            <td><input icheck type="checkbox" ng-model="planRoomCtrl._rooms[$index]" /> </td>
+                            <td>{{ room.no }}.</td>
+                            <td>{{ planRoomCtrl.getTypeName(room.type) }}</td>
+                            <td>
+                                <input class="form-control" type="text" ng-model="planRoomCtrl._price[$index]" placeholder="0.00" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="planRoomCtrl.ok()">Salveaza</button>
+</div>

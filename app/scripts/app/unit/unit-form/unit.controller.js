@@ -1,18 +1,18 @@
 (function (angular, _) {
     angular
         .module('admin.unit')
-        .controller('UnitFormController', controller);
+        .controller('UnitController', controller);
 
-    controller.$inject = ['$scope', '$routeParams', '$q', '$timeout', 'config', 'UnitFormService'];
+    controller.$inject = ['$scope', '$timeout', 'config', 'UnitService', 'unit', 'unitFacilities', 'BaseService'];
 
-    function controller($scope, $routeParams, $q, $timeout, config, unitFormService) {
+    function controller($scope, $timeout, config, UnitService, unit, unitFacilities, bs) {
 
         var vm = this;
         /**
          * VM Public
          */
         vm.form = {};
-        vm.isEdit = isEdit;
+        vm.isEdit = bs.isEditMode();
         vm.onRegionSelect = onRegionSelect;
         vm.onCitySelect = onCitySelect;
         vm.debounce = null;
@@ -47,58 +47,29 @@
             getFormData();
 
             // DEMO
-            $timeout(setDemoData, 1000);
+           // $timeout(setDemoData, 1000);
         }
 
         function setFormMode() {
-            if (_.isNumber($routeParams.id)) {
-                vm.form.id = routeParams.id;
+            if (bs.isEditMode()) {
+                vm.form.id = bs.getEditID();
                 vm.form.mode = 'update';
             }
         }
 
         function setDefaultFormData() {
+            
+            unit.reset();
+
             vm.form = {
                 id: -1,
                 mode: 'create',
                 data: {
                     types: [],
                     regions: [],
-                    cities: [],
-                    facilities: [],
-                    services: []
+                    cities: []
                 },
-                input: {
-                    type: null,
-                    name: null,
-                    region: null,
-                    citiy: null,
-                    gps: config.api.google.getMapCenter('string'),
-                    "street": null,
-                    "streetNo": null,
-                    "stars": null,
-                    "capacity": null,
-                    "rooms": null,
-                    "receptionPhone": null,
-                    "receptionFax": null,
-                    "receptionName": null,
-                    "receptionEmail": null,
-                    "website": null,
-                    "shortDescriptionRO": null,
-                    "shortDescriptionEN": null,
-                    "shortDescriptionFR": null,
-                    "descriptionRO": null,
-                    "descriptionEN": null,
-                    "descriptionFR": null,
-                    "contactPerson": null,
-                    "contactPersonFunction": null,
-                    "contactPersonPhone": null,
-                    "contactPersonMail": null,
-                    "companyName": null,
-                    "companRegCode": null,
-                    "cui": null
-                },
-
+                input: unit,
             };
         }
 
@@ -136,18 +107,14 @@
 
             onRegionSelect();
 
-            $timeout(function(){
-                vm.form.input.city = vm.form.data.cities[0];
-                onCitySelect();
-            },1000);
         }
 
         function getFormData() {
-            unitFormService.getDataSync()
+            UnitService.getDataSync()
                 .then(function (response) {
                     // clear city cache
-                    unitFormService.clearCache('cities');
-                    vm.form.data = unitFormService.data;
+                    UnitService.clearCache('cities');
+                    vm.form.data = UnitService.data;
 
                     // Edit data
                     getUnitData();
@@ -155,15 +122,10 @@
         }
 
         function getUnitData() {
-            if (isEdit()) {
+            if (bs.isEditMode()) {
                 //EDIT MODE
             }
         }
-
-        function isEdit() {
-            return vm.id != -1;
-        }
-
         /**
          * @events
          */
@@ -172,11 +134,11 @@
             $timeout.cancel(vm.debounce);
             vm.debounce = $timeout(function () {
 
-                unitFormService.clearCache('cities');
+                UnitService.clearCache('cities');
                 vm.form.input.city = null;
 
                 if (!_.isEmpty(vm.form.input.region)) {
-                    unitFormService.getCities(vm.form.input.region.region);
+                    UnitService.getCities(vm.form.input.region.region);
                 }
 
             }, vm.debounceTime)
@@ -200,7 +162,7 @@
                     lng: parseFloat(gpsObj[1]) * 1
                 };
 
-                unitFormService.validateGPS(gps)
+                UnitService.validateGPS(gps)
                     .then(function (gps) {
                         setMapMarker(gps);
                     }, function (defaultCenter) {

@@ -23,6 +23,8 @@
                     unitTypes: 'unit-type',
                     unitFacilities: 'unit-facility',
                     unitServices: 'unit-service',
+                    unitRoomTypes: 'room-type',
+                    unitRoomFacilities: 'room-facility',
                     map: 'map'
                 }
             }

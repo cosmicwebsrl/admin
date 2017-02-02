@@ -104,13 +104,13 @@ angular
                     controller: 'RegisterController'
                 })
                 .when('/dashboard/units', {
-                    templateUrl: 'scripts/app/unit/list/unit-list.html',
+                    templateUrl: 'scripts/app/unit/unit-list/unit-list.html',
                     controller: 'UnitListController',
                     controllerAs: 'unitCtrl'
                 })
                 .when('/dashboard/units/create', {
-                    templateUrl: 'scripts/app/unit/form/unit-form.html',
-                    controller: 'UnitFormController',
+                    templateUrl: 'scripts/app/unit/unit-form/unit-form.html',
+                    controller: 'UnitController',
                     controllerAs: 'unitCtrl',
                     resolve: {
                         loadStepy: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -122,8 +122,8 @@ angular
                     }
                 })
                 .when('/dashboard/units/update/:id', {
-                    templateUrl: 'scripts/app/unit/form/unit-form.html',
-                    controller: 'UnitFormController',
+                    templateUrl: 'scripts/app/unit/unit-form/unit-form.html',
+                    controller: 'UnitController',
                     controllerAs: 'unitCtrl',
                     resolve: {
                         loadStepy: ['$ocLazyLoad', function ($ocLazyLoad) {

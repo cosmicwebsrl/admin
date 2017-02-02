@@ -1,0 +1,10 @@
+
+<div class="form-group">
+    <div class="col-md-offset-3 col-sm-7">
+        <label class="col-md-4" ng-repeat="facility in facilityCtrl.form.data.facilities"> 
+                <input icheck type="checkbox" ng-checked="facilityCtrl.isChecked(facility.facility_id)" ng-model="facilityCtrl.form.model[$index]" ng-change="facilityCtrl.toggleCheck(facility.facility_id)" /> 
+                <span class="capitalize"> {{facility.facility_name_ro}}</span>
+        </label>
+    </div>
+</div>
+<pre> {{ facilityCtrl.printChecked() }} </pre>

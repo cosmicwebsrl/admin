@@ -1,0 +1,66 @@
+<div style="text-align: right">
+<button class="btn btn-info-alt" ng-click="return (planCtrl.form.show = !planCtrl.form.show)" type="button">
+<i class="glyphicon" ng-class="{'glyphicon-plus' : (!planCtrl.form.show) , 'glyphicon-minus' : planCtrl.form.show }"></i> Adauga plan tarifar
+</button>
+</div>
+<div ng-show="planCtrl.form.show">
+
+    <legend>Plan tarifar</legend>
+    <alert ng-show="planCtrl.form.error">Completati corect toate campurile!</alert>
+    <div class="form-group">
+        <label for="start" class="col-md-2 control-label">De la:</label>
+        <div class="col-md-2">
+            <input id="start" class="form-control" type="text" ng-model="planCtrl.form.input.start" placeholder="__/__/____" />
+        </div>
+
+        <label for="currency" class="col-md-2 control-label">Moneda:</label>
+        <div class="col-md-2">
+            <input id="currency" class="form-control" type="text" ng-model="planCtrl.form.input.currency" placeholder="RON" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="end" class="col-md-2 control-label">Pana la:</label>
+        <div class="col-md-2">
+            <input id="end" class="form-control" type="text" ng-model="planCtrl.form.input.end"  placeholder="__/__/____"  />
+        </div>
+    </div>
+
+
+    <pre>{{ planCtrl.form.input | json }}</pre>
+   
+    <div style="text-align: right">
+<button class="btn btn-success" ng-click="planCtrl.addPlan();" type="button">
+        <i class="glyphicon  glyphicon-floppy-save"></i> Salveaza Plan</button>
+</div>
+</div>
+
+<div ng-show="planCtrl.getPlans().length > 0">
+    <legend>Planuri Tarifare</legend>
+    <div class="form-group">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>De la</th>
+                        <th>Pana la</th>
+                        <th>Moneda</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody class="table-striped">
+                    <tr ng-repeat="plan in planCtrl.getPlans()">
+                        <td>{{ $index + 1 }}.</td>
+                        <td>{{ plan.start }}</td>
+                        <td>{{ plan.end }}</td>
+                        <td>{{ plan.currency }}</td>
+                    <td style="text-align: right;">
+                        <button title="Incarca imagini" class="btn btn-info bt-sm" type="button" ng-click="planCtrl.openPlanRooms($index)"><i class="glyphicon glyphicon-th-large"></i> {{ plan.rooms.length }} Camere</button>
+                        <button title="Sterge camera"  class="btn btn-danger bt-sm" type="button" ng-click="planCtrl.delPlan($index)"><i class="glyphicon  glyphicon-trash"></i> </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>

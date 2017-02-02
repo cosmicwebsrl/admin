@@ -1,0 +1,68 @@
+<div style="text-align: right">
+<button class="btn btn-info-alt" ng-click="return (roomCtrl.form.show = !roomCtrl.form.show)" type="button">
+<i class="glyphicon" ng-class="{'glyphicon-plus' : (!roomCtrl.form.show) , 'glyphicon-minus' : roomCtrl.form.show }"></i> Adauga
+camera
+</button>
+</div>
+<div ng-show="roomCtrl.form.show">
+
+    <legend>Informatii camera</legend>
+    <alert ng-show="roomCtrl.form.error">Completati corect toate campurile!</alert>
+    <div class="form-group">
+        <label for="room_type" class="col-md-3 control-label">Tip camera:</label>
+        <div class="col-md-3">
+            <select id="room_type" class="form-control" ng-options="type.room_type_id as type.room_type_ro for type in roomCtrl.form.data.types"
+                ng-model="roomCtrl.form.input.type">
+                <option value="">Selectati tipul camerii</option>
+            </select>
+        </div>
+
+        <label for="room_no" class="col-md-2 control-label">Nr. Camera:</label>
+        <div class="col-md-1">
+            <input id="room_no" class="form-control" type="text" ng-model="roomCtrl.form.input.no" />
+        </div>
+    </div>
+    <pre>{{ roomCtrl.form.input | json }}</pre>
+    <legend>Facilitati camera</legend>
+    <div class="form-group">
+        <div class="col-md-offset-3 col-sm-7">
+            <label class="col-md-4" ng-repeat="facility in roomCtrl.form.data.facilities"> 
+                    <input icheck type="checkbox" ng-checked="roomCtrl.isChecked(facility.room_facility_id)" ng-model="roomCtrl.form._facility[$index]" ng-change="roomCtrl.toggleCheck(facility.room_facility_id)" /> 
+                    <span class="capitalize"> {{facility.room_facility_name_ro}}</span>
+            </label>
+        </div>
+    </div>
+    <pre>{{ roomCtrl.printChecked() }}</pre>
+    <div style="text-align: right">
+<button class="btn btn-success" ng-click="roomCtrl.addRoom();" type="button">
+        <i class="glyphicon  glyphicon-floppy-save"></i> Salveaza camera</button>
+</div>
+</div>
+
+<div ng-show="roomCtrl.getRooms().length > 0">
+    <legend>Camere</legend>
+    <div class="form-group">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Numar camera</th>
+                        <th>Tip Camera</th>
+                        <th>Facilitati</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody class="table-striped">
+                    <tr ng-repeat="room in roomCtrl.getRooms()">
+                        <td>{{ room.no }}.</td>
+                        <td>{{ roomCtrl.getTypeName(room.type) }}</td>
+                        <td><span ng-repeat="facility in room.facilities">{{ roomCtrl.getFacilityName(facility) }}. <span> </td>
+                    <td style="text-align: right;">
+                        <button title="Incarca imagini" class="btn btn-info bt-sm" type="button"><i class="glyphicon  glyphicon-th"></i> 0 Imagini</button>
+                        <button title="Sterge camera"  class="btn btn-danger bt-sm" type="button" ng-click="roomCtrl.delRoom($index)"><i class="glyphicon  glyphicon-trash"></i> </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
