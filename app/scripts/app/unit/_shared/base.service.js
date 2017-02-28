@@ -23,9 +23,16 @@
             return $http.get(config.api.service(service, option));
         }
 
+        function set(service, options){
+            return $http.post(config.api.service(service, option));
+        }
+        
         function handleError(response) {
             // TODO something like
             //return reject({ status: 501, data: { message: 'Unexpected Error' } });
+            if(srv.sync){
+                srv.sync.reject({ status: 501, data: { message: 'Unexpected Error' } });
+            }
         }
 
         function cacheEnabled(cache) {

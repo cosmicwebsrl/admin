@@ -1,5 +1,5 @@
 <div style="text-align: right">
-<button class="btn btn-info-alt" ng-click="return (planCtrl.form.show = !planCtrl.form.show)" type="button">
+    <button class="btn btn-info-alt" ng-click="return (planCtrl.form.show = !planCtrl.form.show)" type="button">
 <i class="glyphicon" ng-class="{'glyphicon-plus' : (!planCtrl.form.show) , 'glyphicon-minus' : planCtrl.form.show }"></i> Adauga plan tarifar
 </button>
 </div>
@@ -22,17 +22,17 @@
     <div class="form-group">
         <label for="end" class="col-md-2 control-label">Pana la:</label>
         <div class="col-md-2">
-            <input id="end" class="form-control" type="text" ng-model="planCtrl.form.input.end"  placeholder="__/__/____"  />
+            <input id="end" class="form-control" type="text" ng-model="planCtrl.form.input.end" placeholder="__/__/____" />
         </div>
     </div>
 
 
     <pre>{{ planCtrl.form.input | json }}</pre>
-   
+
     <div style="text-align: right">
-<button class="btn btn-success" ng-click="planCtrl.addPlan();" type="button">
+        <button class="btn btn-success" ng-click="planCtrl.addPlan();" type="button">
         <i class="glyphicon  glyphicon-floppy-save"></i> Salveaza Plan</button>
-</div>
+    </div>
 </div>
 
 <div ng-show="planCtrl.getPlans().length > 0">
@@ -55,12 +55,13 @@
                         <td>{{ plan.start }}</td>
                         <td>{{ plan.end }}</td>
                         <td>{{ plan.currency }}</td>
-                    <td style="text-align: right;">
-                        <button title="Incarca imagini" class="btn btn-info bt-sm" type="button" ng-click="planCtrl.openPlanRooms($index)"><i class="glyphicon glyphicon-th-large"></i> {{ plan.rooms.length }} Camere</button>
-                        <button title="Sterge camera"  class="btn btn-danger bt-sm" type="button" ng-click="planCtrl.delPlan($index)"><i class="glyphicon  glyphicon-trash"></i> </button></td>
-                </tr>
-            </tbody>
-        </table>
+                        <td style="text-align: right;">
+                            <button title="Incarca imagini" class="btn btn-info bt-sm" type="button" ng-click="planCtrl.openPlanRooms($index)"><i class="glyphicon glyphicon-th-large"></i> {{ plan.rooms.length }} Camere</button>
+                            <button title="Sterge camera" class="btn btn-danger bt-sm" type="button" ng-click="planCtrl.delPlan($index)"><i class="glyphicon  glyphicon-trash"></i> </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </div>

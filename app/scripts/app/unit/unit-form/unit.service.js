@@ -15,7 +15,8 @@
             getUnitTypes: getUnitTypes,
             getCities: getCities,
             validateGPS: validateGPS,
-
+            save : save,
+            
             // shared
             get: bs.get,
             clearCache: bs.clearCache,
@@ -87,6 +88,17 @@
                     lng: config.api.google.getMapCenter()[1]
                 });
             }
+
+            return srv.sync.promise;
+        }
+
+        function save(data){
+
+            srv.sync = $q.defer();
+
+            srv.set('unit','save', data).then(function(response){
+
+            }, srv.handleError);
 
             return srv.sync.promise;
         }

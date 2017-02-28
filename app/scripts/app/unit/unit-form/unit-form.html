@@ -92,10 +92,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="no_people" class="col-md-3 control-label">Nr. Locuri:</label>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <input id="no_people" class="form-control" type="text" ng-model="unitCtrl.form.input.capacity" required>
                                 </div>
-                                <label for="no_rooms" class="col-md-1 control-label">Nr. Camere:</label>
+                                <label for="no_rooms" class="col-md-2 control-label">Nr. Camere:</label>
                                 <div class="col-md-2">
                                     <input id="no_rooms" class="form-control" type="text" ng-model="unitCtrl.form.input.rooms" required>
                                 </div>
@@ -139,23 +139,26 @@
                                 <div class="col-md-6">
                                     <tabset tab-theme="magenta" tab-position="top">
                                         <tab heading="Romana">
-                                            <div class="form-group">
+                                            <div class="form-group" style="margin-bottom: 0;">
                                                 <div class="col-md-12">
                                                     <textarea id="shortDescriptionRO" class="form-control" type="text" ng-model="unitCtrl.form.input.shortDescriptionRO" required></textarea>
+                                                    <img src="assets/img/mini_flags/ro.gif" alt="Romana" />
                                                 </div>
                                             </div>
                                         </tab>
                                         <tab heading="Engleza">
-                                            <div class="form-group">
+                                            <div class="form-group" style="margin-bottom: 0;">
                                                 <div class="col-md-12">
                                                     <textarea id="shortDescriptionEN" class="form-control" type="text" ng-model="unitCtrl.form.input.shortDescriptionEN"></textarea>
+                                                    <img src="assets/img/mini_flags/gb.gif" alt="Engleza" />
                                                 </div>
                                             </div>
                                         </tab>
                                         <tab heading="Franceza">
-                                            <div class="form-group">
+                                            <div class="form-group" style="margin-bottom: 0;">
                                                 <div class="col-md-12">
                                                     <textarea id="shortDescriptionFR" class="form-control" type="text" ng-model="unitCtrl.form.input.shortDescriptionFR"></textarea>
+                                                    <img src="assets/img/mini_flags/fr.gif" alt="Franceza" />
                                                 </div>
                                             </div>
                                         </tab>
@@ -168,23 +171,26 @@
                                 <div class="col-md-6">
                                     <tabset tab-theme="orange" tab-position="top">
                                         <tab heading="Romana">
-                                            <div class="form-group">
+                                            <div class="form-group" style="margin-bottom: 0;">
                                                 <div class="col-md-12">
                                                     <textarea rows="10" id="descriptionRO" class="form-control" type="text" ng-model="unitCtrl.form.input.descriptionRO" required></textarea>
+                                                    <img src="assets/img/mini_flags/ro.gif" alt="Romana" />
                                                 </div>
                                             </div>
                                         </tab>
                                         <tab heading="Engleza">
-                                            <div class="form-group">
+                                            <div class="form-group" style="margin-bottom: 0;">
                                                 <div class="col-md-12">
                                                     <textarea rows="10" id="descriptionEN" class="form-control" type="text" ng-model="unitCtrl.form.input.descriptionEN"></textarea>
+                                                    <img src="assets/img/mini_flags/gb.gif" alt="Engleza" />
                                                 </div>
                                             </div>
                                         </tab>
                                         <tab heading="Franceza">
-                                            <div class="form-group">
+                                            <div class="form-group" style="margin-bottom: 0;">
                                                 <div class="col-md-12">
                                                     <textarea rows="10" id="descriptionFR" class="form-control" type="text" ng-model="unitCtrl.form.input.descriptionFR"></textarea>
+                                                    <img src="assets/img/mini_flags/fr.gif" alt="Franceza" />
                                                 </div>
                                             </div>
                                         </tab>
@@ -274,8 +280,8 @@
 </form>
 </panel>
 <pre>
-                    {{ unitCtrl.form.input | json }}
-                </pre>
+{{ unitCtrl.form.input | json }}
+</pre>
 </div>
 </div>
 

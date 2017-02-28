@@ -29,25 +29,29 @@
             zoom: 15,
             mapTypeControl: false,
             scrollwheel: false,
-            streetViewControl: false
+            streetViewControl: false,
+            apiKey: 'AIzaSyCP2D6XDmrOEVAEt4tMTmqa_ca6t_Am7Oc'
         };
 
+        /**
+         * Initialize controller data
+         */
         init();
 
         $scope.$on('GMaps:created', function (event, mapInstance) {
             vm.geoCodingMapInstance = mapInstance.map;
         });
+
         /**
          * @constructor
          */
         function init() {
             setDefaultFormData();
             setFormMode();
-
             getFormData();
 
-            // DEMO
-           // $timeout(setDemoData, 1000);
+            // DEMO => populate form
+            $timeout(setDemoData, 1000);
         }
 
         function setFormMode() {
@@ -57,8 +61,12 @@
             }
         }
 
+        /**
+         * Set the form ngModel bindings with empty balues 
+         */
         function setDefaultFormData() {
-            
+
+            // Reset unit data
             unit.reset();
 
             vm.form = {
@@ -73,6 +81,10 @@
             };
         }
 
+        /**
+         * used for development
+         * updates the form ngModel
+         */
         function setDemoData() {
             vm.form.input = {
                 type: vm.form.data.types[0],
@@ -109,6 +121,10 @@
 
         }
 
+        /**
+         * Get necessary form data to populate select controls
+         * Loads: unit types && regions
+         */
         function getFormData() {
             UnitService.getDataSync()
                 .then(function (response) {
@@ -121,15 +137,22 @@
                 });
         }
 
+        /**
+         * If edit get unit data
+         */
         function getUnitData() {
             if (bs.isEditMode()) {
                 //EDIT MODE
             }
         }
+
         /**
          * @events
          */
 
+        /**
+         * On region select fetch the region citites to enable city select
+         */
         function onRegionSelect() {
             $timeout.cancel(vm.debounce);
             vm.debounce = $timeout(function () {
@@ -144,6 +167,9 @@
             }, vm.debounceTime)
         }
 
+        /**
+         * On city select get gps coords and drop pin on map
+         */
         function onCitySelect() {
             $timeout.cancel(vm.debounce);
             vm.debounce = $timeout(function () {
@@ -162,6 +188,9 @@
                     lng: parseFloat(gpsObj[1]) * 1
                 };
 
+                /**
+                 * Some locations don't have the gps values set
+                 */
                 UnitService.validateGPS(gps)
                     .then(function (gps) {
                         setMapMarker(gps);
@@ -174,6 +203,10 @@
             }, vm.debounceTime)
         }
 
+        /**
+         * Place a marker on the map on the provided gps location
+         * @param {object} gps contains map lat and lng
+         */
         function setMapMarker(gps) {
             vm.geoCodingMapInstance.setCenter(gps.lat, gps.lng);
 
@@ -191,6 +224,9 @@
             }
         }
 
+        /**
+         * on map marker moves update the form ngModel gps coords
+         */
         function onMapMarkerMove() {
             var gps = vm.mapMarker.getPosition();
             vm.form.input.gps = [gps.lat(), gps.lng()].join(',');
